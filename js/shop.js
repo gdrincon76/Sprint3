@@ -81,28 +81,63 @@ var total = 0;
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    for(let i = 0; i < products.length; i++) {
+        if(id === products[i].id) {
+            cartList.push(products[i]);
+        }
+    }
+    console.log(cartList);
+    calculateTotal();
+    calculateSubtotals();
+    generateCart();
 }
 
 // Exercise 2
 function cleanCart() {
-
+    cartList.length = 0;
+    console.log("Cart was emptied");
 }
 
 // Exercise 3
 function calculateSubtotals() {
     // 1. Create a for loop on the "cartList" array 
     // 2. Implement inside the loop an if...else or switch...case to add the quantities of each type of product, obtaining the subtotals: subtotalGrocery, subtotalBeauty and subtotalClothes
+    let subtotalGrocery = 0;
+    let subtotalBeauty = 0;
+    let subtotalClothes = 0;
+    for(let i = 0; i < cartList.length; i++) {
+         let type = cartList[i].type;
+         switch (type) {
+             case "grocery" :
+                 subtotalGrocery++;
+                 break;
+             case "beauty" :
+                 subtotalBeauty++;
+                 break;
+             case "clothes" :
+                 subtotalClothes++;
+                 break;
+             default :
+                 console.log("Cart is empty");
+         }
+         console.log("Groceries: " + subtotalGrocery + " / " + "Beauty: " + subtotalBeauty + " / " + "Clothes: " + subtotalClothes)
+    }
 }
 
 // Exercise 4
 function calculateTotal() {
-    // Calculate total price of the cart either using the "cartList" array
+    let total = 0;
+    for(let i = 0; i < cartList.length; i++) {
+        total += cartList[i].price;
+    }
+    console.log("Total: " + total);
 }
 
 // Exercise 5
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+    
 }
 
 // Exercise 6
