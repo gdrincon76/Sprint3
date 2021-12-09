@@ -84,12 +84,12 @@ function buy(id) {
     for(let i = 0; i < products.length; i++) {
         if(id === products[i].id) {
             cartList.push(products[i]);
+            generateCart(products[i]);
         }
     }
-    console.log(cartList);
     calculateTotal();
     calculateSubtotals();
-    generateCart();
+    
 }
 
 // Exercise 2
@@ -134,10 +134,26 @@ function calculateTotal() {
 }
 
 // Exercise 5
-function generateCart() {
+function generateCart(product) {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-    
+    let isPresent = false;
+    console.log(product);
+    if(cart.length === 0) {
+        cart = [{quantity: 1, product: product}];  
+    } else {
+        for(let i = 0; i < cart.length; i++) {
+            if(cart[i].product.id === product.id) {
+                cart[i].quantity++;
+                isPresent = true;
+            }    
+        }
+        if(!isPresent) {
+            cart.push({quantity: 1, product: product});
+        }
+
+    }
+    console.log(cart);        
 }
 
 // Exercise 6
