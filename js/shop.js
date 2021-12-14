@@ -126,7 +126,6 @@ function calculateSubtotals() {
 
 // Exercise 4
 function calculateTotal() {
-    let total = 0;
     for(let i = 0; i < cartList.length; i++) {
         total += cartList[i].price;
     }
@@ -138,13 +137,13 @@ function generateCart(product) {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
     let isPresent = false;
-    console.log(product);
+    //console.log(product);
     if(cart.length === 0) {
         cart = [{quantity: 1, product: product}];  
     } else {
         for(let i = 0; i < cart.length; i++) {
             if(cart[i].product.id === product.id) {
-                cart[i].quantity++;
+                cart[i].quantity++; // cart[i].quantity = cart[i].quantity +1;
                 isPresent = true;
             }    
         }
@@ -159,6 +158,13 @@ function generateCart(product) {
 // Exercise 6
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+    let oilDiscount = 0;
+    let cupcakeDiscount = 0;
+
+    for(i = 0; i < cart.length; i++) {
+
+    }
+
 }
 
 // Exercise 7
@@ -166,12 +172,39 @@ function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+
+     let isPresent = false;
+    
+    for(let i = 0; i < products.length; i++) {
+
+    }
+    if(cart.length === 0 && id === products[i].id) {
+        cart = [{quantity: 1, product: products[i]}];  
+    } else {
+        for(let i = 0; i < cart.length; i++) {
+            if(cart[i].product.id === product.id) {
+                cart[i].quantity++; // cart[i].quantity = cart[i].quantity +1;
+                isPresent = true;
+            }    
+        }
+        if(!isPresent) {
+            cart.push({quantity: 1, product: product});
+        }
+
+    }
 }
 
 // Exercise 9
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    for(let i = 0; i < Cart.length; i++) {
+        if(cart[i].product.id === id && cart[i].quantity > 1) {
+            cart[i].quantity--;
+        } else {
+            cart.pop(cart[i]);
+        }
+    }
 }
 
 // Exercise 10
