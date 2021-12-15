@@ -1,60 +1,8 @@
 // If you have time, you can move this variable "products" to a json file and load the data in this js. It will look more professional
-var products = [
-    {
-        id: 1,
-        name: 'cooking oil',
-        price: 10.5,
-        type: 'grocery'
-    },
-    {
-        id: 2,
-        name: 'Pasta',
-        price: 6.25,
-        type: 'grocery'
-    },
-    {
-        id: 3,
-        name: 'Instant cupcake mixture',
-        price: 5,
-        type: 'grocery'
-    },
-    {
-        id: 4,
-        name: 'All-in-one',
-        price: 260,
-        type: 'beauty'
-    },
-    {
-        id: 5,
-        name: 'Zero Make-up Kit',
-        price: 20.5,
-        type: 'beauty'
-    },
-    {
-        id: 6,
-        name: 'Lip Tints',
-        price: 12.75,
-        type: 'beauty'
-    },
-    {
-        id: 7,
-        name: 'Lawn Dress',
-        price: 15,
-        type: 'clothes'
-    },
-    {
-        id: 8,
-        name: 'Lawn-Chiffon Combo',
-        price: 19.99,
-        type: 'clothes'
-    },
-    {
-        id: 9,
-        name: 'Toddler Frock',
-        price: 9.99,
-        type: 'clothes'
-    }
-]
+var uri = "js/products.json";
+var products = [];
+fetch(uri).then(response => response.json()).then(data => products = data.products).catch(console.log("File not found"));
+
 // Array with products (objects) added directly with push(). Products in this array are repeated.
 var cartList = [];
 
@@ -95,7 +43,7 @@ function buy(id) {
 // Exercise 2
 function cleanCart() {
     cart.length = 0;
-    console.log("Cart was emptied");
+    console.log("Cart was emptied");   
 }
 
 /* Exercise 3
@@ -126,10 +74,9 @@ function calculateSubtotals() {
 
 // Exercise 4
 function calculateTotal(cart) {
-    
+
     total += cart.product.price;
-    console.log("Total: " + total);
-    applyPromotionsCart(cart);
+    applyPromotionsCart(cart);  
 }
 
 /* Exercise 5
@@ -174,12 +121,6 @@ function applyPromotionsCart(cart) {
         
     subTotalWithDiscount = total - oilDiscount - cupcakeDiscount;
     amountDiscounted = total - subTotalWithDiscount;
-    subTotalWithDiscount = subTotalWithDiscount.toFixed(2)
-    amountDiscounted = amountDiscounted.toFixed(2)
-    //roundDecimals(subTotalWithDiscount);
-    //roundDecimals(amountDiscounted);
-    console.log("Total con descuento: " + subTotalWithDiscount);
-    console.log("Cantidad descontada: " + amountDiscounted);
 
     function hasOilDiscount(quantity) {
         return quantity >= 3
@@ -187,7 +128,6 @@ function applyPromotionsCart(cart) {
     function hasCupcakeDiscount(quantity) {
         return quantity >= 10
     }
-    
 }
 
 // Exercise 7
@@ -212,12 +152,10 @@ function addToCart(id) {
             if (!isPresent) {
                 cart.push({ quantity: 1, product: products[i] });
                 calculateTotal(cart[cart.length -1]);
-                console.log(cart);
-                
+                console.log(cart);          
             }
         }
     }
-    //console.log("carrito: " + cart);
 }
 
 // Exercise 9
