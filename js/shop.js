@@ -24,7 +24,7 @@ var subtotal = {
     },
 };
 var total = 0;
-
+var counter = 0;
 /* Exercise 1
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
@@ -156,6 +156,13 @@ function addToCart(id) {
             }
         }
     }
+    
+    var badge = document.getElementById("cartBadge");
+    badge.innerText = ++counter;
+    var listItem = document.createElement('li');
+    var cartList = document.getElementById("cartList").appendChild(listItem);
+    cartList.innerHTML = cart[0].quantity + " > " + " " + cart[0].product.name;
+
 }
 
 // Exercise 9
@@ -175,3 +182,4 @@ function removeFromCart(id) {
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
+
