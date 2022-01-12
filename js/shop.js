@@ -161,7 +161,7 @@ function addToCart(id) {
     badge.innerText = ++counter;
     var listItem = document.createElement('li');
     var cartList = document.getElementById("cartList").appendChild(listItem);
-    cartList.innerHTML = cart[0].quantity + " > " + " " + cart[0].product.name;
+    cartList.innerHTML = cart[cart.length -1].quantity + " > " + " " + cart[cart.length -1].product.name;
 
 }
 
